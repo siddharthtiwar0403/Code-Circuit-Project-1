@@ -106,7 +106,7 @@
       if(!button) return;
       button.animate([
         { transform: 'scale(1) rotate(0deg)' },
-        { transform: 'scale(1.4) rotate(20deg)' },
+        { transform: 'scale(1.5) rotate(30deg)' },
         { transform: 'scale(1) rotate(0deg)' },
       ], {
         duration: 600,
@@ -209,3 +209,11 @@
     renderCalendar(currentYear, currentMonth);
     updateSummary();
   })();
+
+
+window.addEventListener('DOMContentLoaded', () => {
+  // Stagger emoji animation
+  document.querySelectorAll('.emoji-btn').forEach((btn, index) => {
+    btn.style.animationDelay = `${0.7 + index * 0.1}s`;
+  });
+});
