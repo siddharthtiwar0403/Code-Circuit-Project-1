@@ -8,16 +8,20 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Mood Tracker </h1>
-  <h2>What's your mood today</h2>
-  <div class="emoji-buttons">
+ <h1 class="fancy-heading">
+  <Span>MOOD&nbsp;TRACKER</Span>
+</h1>
+<h2>
+  What Your Mood Today
+</h2>
+  </div>
+    <div class="emoji-buttons">
     <button class="emoji-btn" data-mood="very-happy" title="Very Happy">😍</button>
     <button class="emoji-btn"  data-mood="happy" title="Happy">😊</button>
     <button class="emoji-btn"  data-mood="neutral" title="Neutral">😐</button>
     <button class="emoji-btn"  data-mood="sad" title="Sad">😟</button>
     <button class="emoji-btn"  data-mood="angry" title="Angry">😡</button>
   </div>
-
   <div class="calendar" role="application" >
     <div class="calendar-header">
       <button class="nav-btn" id="prevMonth" title="Previous Month">&#9664;</button>
@@ -30,10 +34,8 @@
     <div class="days" id="calendarDays">
      //        Calendar days Added by Javascript
     </div>
-  </div>
-
    <div class="summary-container" aria-live="polite" aria-atomic="true">
-    <div class="summary-title">Your Mood Last 7 Days</div>
+    <div class="summary-title">Your Mood For Last 7 Days</div>
     <div class="mood-bar" id="moodBar">
       // Mood counts will appear here 
       </div>
