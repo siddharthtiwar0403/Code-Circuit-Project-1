@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link rel="shortcut icon" type="#9654" href="bg1.png">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mood Tracker with Emoji & Calendar</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Mood Tracker </h1>
+  <h2>What's your mood today</h2>
+  <div class="emoji-buttons">
+    <button class="emoji-btn" data-mood="very-happy" title="Very Happy">😍</button>
+    <button class="emoji-btn"  data-mood="happy" title="Happy">😊</button>
+    <button class="emoji-btn"  data-mood="neutral" title="Neutral">😐</button>
+    <button class="emoji-btn"  data-mood="sad" title="Sad">😟</button>
+    <button class="emoji-btn"  data-mood="angry" title="Angry">😡</button>
+  </div>
+
+  <div class="calendar" role="application" aria-label="Mood calendar">
+    <div class="calendar-header">
+      <button class="nav-btn" id="prevMonth" title="Previous Month">&#9664;</button>
+      <div class="month-year" aria-live="polite" aria-atomic="true" id="monthYearLabel"></div>
+      <button class="nav-btn" id="nextMonth" aria-label="Next Month" title="Next Month">&#9654;</button>
+    </div>
+    <div class="weekdays" aria-hidden="true">
+      <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+    </div>
+    <div class="days" id="calendarDays">
+      <!-- Calendar days injected by JS -->
+    </div>
+  </div>
+
+   <div class="summary-container" aria-live="polite" aria-atomic="true">
+    <div class="summary-title">Your Mood Last 7 Days</div>
+    <div class="mood-bar" id="moodBar">
+      <!-- Mood counts will appear here -->
+    </div>
+    <div class="suggestion" id="suggestionText" tabindex="0" aria-live="polite" aria-atomic="true"></div>
+  </div>
+
+<script src="script.js"> </script>
+</body>
+</html>
+
