@@ -27,36 +27,86 @@
       opacity: 1;
   animation: bodyFade 2s ease-out forwards;
   }
-
 @keyframes bodyFade {
   to { opacity: 1; }
 }
-
-
-h1 {
-    font-size: 60px;
-    margin-bottom: 10px;
-    letter-spacing: 1.5px;
-    background: linear-gradient(to right , #fc72ff, #8f68ff, #215ef6, #8f68ff, #fc72ff);
-    background-size: 200%;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: animate-gradient 2s linear infinite alternate;
+.fancy-heading {
+  font-weight: bold;
+  letter-spacing: 2px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: inline-block;
+  white-space: nowrap;
+  perspective: 800px;
 }
+
+.fancy-heading span {
+  display: inline-block;
+  font-size: 60px;
+  font-weight: bold;
+  background: linear-gradient(
+    -45deg, #fc72ff, #8f68ff, #215ef6, #00d4ff, #215ef6, #8f68ff, #fc72ff
+  );
+  background-size: 400%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  /* -webkit-text-fill-color: transparent; */
+
+  opacity: 0;
+  transform: scale(2) translateY(10px);
+  animation: fadeZoomIn 0.6s ease-out forwards, animate-gradient 5s linear infinite;
+}
+
+/* Letter-by-letter stagger */
+.fancy-heading span:nth-child(1) { animation-delay: 0s, 0s; }
+.fancy-heading span:nth-child(2) { animation-delay: 0.1s, 0s; }
+.fancy-heading span:nth-child(3) { animation-delay: 0.2s, 0s; }
+.fancy-heading span:nth-child(4) { animation-delay: 0.3s, 0s; }
+.fancy-heading span:nth-child(5) { animation-delay: 0.4s, 0s; }
+.fancy-heading span:nth-child(6) { animation-delay: 0.5s, 0s; }
+.fancy-heading span:nth-child(7) { animation-delay: 0.6s, 0s; }
+.fancy-heading span:nth-child(8) { animation-delay: 0.7s, 0s; }
+.fancy-heading span:nth-child(9) { animation-delay: 0.8s, 0s; }
+.fancy-heading span:nth-child(10) { animation-delay: 0.9s, 0s; }
+.fancy-heading span:nth-child(11) { animation-delay: 1s, 0s; }
+.fancy-heading span:nth-child(12) { animation-delay: 1.1s, 0s; }
+
+@keyframes fadeZoomIn {
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
 @keyframes animate-gradient {
-  to{
-    background-position: 200%;
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
   }
 }
 h2 {
-  font-size: 30px;
+  font-size: 35px;
   opacity: 0;
   transform: translateY(20px);
   font-weight: 400;
+  background: linear-gradient(
+    -45deg, #fc72ff, #8f68ff, #215ef6, #00d4ff, #215ef6, #8f68ff, #fc72ff
+  );
+  background-size: 400%;
+  background-clip: text;
+  -webkit-background-clip: text;
   margin-top: 0;
   color: #ddd;
-  animation: fadeInUp 1s ease-out .8s forwards;
+  animation:fadeInUp 1s ease-out .8s forwards;
+}
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
 }
 
 /* Emoji buttons float-in */
@@ -95,6 +145,13 @@ h2 {
       0 10px 20px rgba(0, 255, 0, 0.7),    
       -10px 0 20px rgba(0, 0, 255, 0.7);    
   }
+  25% {
+    box-shadow: 
+      0 -10px 20px rgba(255, 0, 0, 0.7),   
+      10px 0 20px rgba(255, 165, 0, 0.7),   
+      0 10px 20px rgba(0, 255, 0, 0.7),    
+      -10px 0 20px rgba(0, 0, 255, 0.7);    
+  }
 
   50% {
     box-shadow: 
@@ -112,17 +169,6 @@ h2 {
   }
 }
 /* Summary slide-up */
-.summary-container {
-  opacity: 0;
-  transform: translateY(40px);
-  animation: summarySlideUp 0.8s ease-out 1.4s forwards;
-}
-@keyframes summarySlideUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
   .emoji-buttons {
     display: flex;
     justify-content: center;
@@ -207,7 +253,7 @@ h2 {
   }
   .day.today {
     box-shadow: 0 0 12px var(--very-happy);
-    border: 2px solid var(--very-happy);
+
   }
   .day.mood-very-happy {
     background-color: var(--very-happy);
@@ -256,12 +302,11 @@ h2 {
     background-color: var(--calendar-bg);
     border-radius: 20px;
     padding: 1rem 1.5rem 1.5rem 1.5rem;
-    box-shadow: 0 10px 15px rgba(0,0,0,0.4);
+    box-shadow: 10px 10px 15px rgba(0,0,0,0.8);
     color: var(--text-color);
     user-select: none;
     font-weight: 500;
-    margin-bottom: 1rem;
-    animation: fadeInUp 0.8s ease forwards;
+    margin: 20px 0px;
   }
   .summary-title {
     font-size: 1.4rem;
@@ -312,16 +357,6 @@ h2 {
     animation: fadeIn 1s forwards 1s;
   }
 
-  @keyframes fadeInUp {
-    from {
-      transform: translateY(20px);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
   @keyframes fadeIn {
     to {
       opacity: 1;
