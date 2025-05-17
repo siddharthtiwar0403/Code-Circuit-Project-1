@@ -24,32 +24,105 @@
     min-height: 100vh;
     padding: 1rem;
     -webkit-font-smoothing: antialiased;
+      opacity: 1;
+  animation: bodyFade 2s ease-out forwards;
   }
-  h1 {
-    font-weight: 600;
+
+@keyframes bodyFade {
+  to { opacity: 1; }
+}
+
+
+h1 {
     font-size: 60px;
-    margin-bottom: 0.2rem;
-    letter-spacing: 1.2px;
-    user-select: none;
+    margin-bottom: 10px;
+    letter-spacing: 1.5px;
+    background: linear-gradient(to right , #fc72ff, #8f68ff, #215ef6, #8f68ff, #fc72ff);
+    background-size: 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: animate-gradient 2s linear infinite alternate;
+}
+@keyframes animate-gradient {
+  to{
+    background-position: 200%;
   }
-  
-  h1:hover{
-    color: red;
-    transition: 0.5s;
-    transform: scale(1.1);
+}
+h2 {
+  font-size: 30px;
+  opacity: 0;
+  transform: translateY(20px);
+  font-weight: 400;
+  margin-top: 0;
+  color: #ddd;
+  animation: fadeInUp 1s ease-out .8s forwards;
+}
 
+/* Emoji buttons float-in */
+.emoji-btn {
+  margin-bottom: 20px;
+  opacity: 0;
+  transform: translateY(20px) rotate(-10deg);
+  animation: emojiFloat 0.6s ease-out forwards;
+}
+@keyframes emojiFloat {
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
   }
-  h1::after:hover{
-    color: var(--very-happy);
-    transition: 0.5s;
-    transform: scale(1.1);
+}
 
+/* Calendar zoom + glow */
+.calendar {
+  width: 100%;
+  max-width: 650px;
+  background-color: var(--calendar-bg);
+  border-radius: 20px;
+  padding: 1rem 1.5rem 2rem 1.5rem;
+  user-select: none;
+  margin-bottom: 2rem;
+  position: relative;
+  /* z-index: 1; */
+  animation: glowOrbit 3s linear infinite;
+}
+
+@keyframes glowOrbit {
+  0% {
+    box-shadow: 
+      0 -10px 20px rgba(255, 0, 0, 0.7),   
+      10px 0 20px rgba(255, 165, 0, 0.7),   
+      0 10px 20px rgba(0, 255, 0, 0.7),    
+      -10px 0 20px rgba(0, 0, 255, 0.7);    
   }
-  h2 {
-    font-weight: 400;
-    margin-top: 0;
-    color: #ddd;
+
+  50% {
+    box-shadow: 
+      0 10px 20px rgba(255, 0, 0, 0.7),
+      -10px 0 20px rgba(255, 165, 0, 0.7),
+      0 -10px 20px rgba(0, 255, 0, 0.7),
+      10px 0 20px rgba(0, 0, 255, 0.7);
   }
+  100% {
+    box-shadow: 
+      0 -10px 20px rgba(255, 0, 0, 0.7),
+      10px 0 20px rgba(255, 165, 0, 0.7),
+      0 10px 20px rgba(0, 255, 0, 0.7),
+      -10px 0 20px rgba(0, 0, 255, 0.7);
+  }
+}
+/* Summary slide-up */
+.summary-container {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: summarySlideUp 0.8s ease-out 1.4s forwards;
+}
+@keyframes summarySlideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
   .emoji-buttons {
     display: flex;
     justify-content: center;
@@ -60,7 +133,7 @@
   .emoji-btn {
     background: var(--button-bg);
     border: none;
-    border-radius: 12px;
+    border-radius: 15px;
     font-size: 2.4rem;
     padding: 0.6rem 1rem;
     cursor: pointer;
@@ -70,8 +143,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 64px;
-    height: 64px;
+    width:  70px;
+    height: 70px;
   }
   .emoji-btn:focus,
   .emoji-btn:hover {
@@ -83,16 +156,7 @@
     transform: scale(0.95);
     box-shadow: 0 3px 6px rgba(0,0,0,0.6);
   }
-  .calendar {
-    width: 100%;
-    max-width: 650px;
-    background-color: var(--calendar-bg);
-    border-radius: 20px;
-    padding: 1rem 1.5rem 2rem 1.5rem;
-    box-shadow: 0 10px 15px rgba(0,0,0,0.4);
-    user-select: none;
-    margin-bottom: 2rem;
-  }
+
   .calendar-header {
     display: flex;
     justify-content: space-between;
