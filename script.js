@@ -175,6 +175,8 @@
         suggestion = "Good mood overall! Try some mindfulness or a small walk to boost it further.";
       } else if(avgScore >= 2.5){
         suggestion = "It's okay to have ups and downs. Consider talking to a friend or journaling.";
+      } else if(avgScore >= 1.5){
+        suggestion = "Not all the days are same . Try some relaxation techniques or a hobby.";
       } else {
         suggestion = "Having a tough time? Remember, self-care and talking to someone can help. You are not alone!";
       }
@@ -217,3 +219,13 @@ window.addEventListener('DOMContentLoaded', () => {
     btn.style.animationDelay = `${0.7 + index * 0.1}s`;
   });
 });
+
+ const heading = document.querySelector(".fancy-heading");
+  const text = heading.textContent;
+  heading.innerHTML = "";
+  [...text].forEach((char, index) => {
+    const span = document.createElement("span");
+    span.textContent = char;
+    span.style.animationDelay = `${index * 0.1}s`;
+    heading.appendChild(span);
+  });
