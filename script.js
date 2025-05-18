@@ -16,22 +16,17 @@
     let currentDate = new Date();
     let currentYear = currentDate.getFullYear();
     let currentMonth = currentDate.getMonth();
-    // Key to store moods in localStorage
     const STORAGE_KEY = 'moodTrackerData';
-    // Load saved moods from localStorage
     function loadMoodData() {
       const data = localStorage.getItem(STORAGE_KEY);
       return data ? JSON.parse(data) : {};
     }
-    // Save moods to localStorage
     function saveMoodData(data) {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
     }
-    // Format date key like YYYY-MM-DD
     function formatDateKey(year, month, day) {
       return `${year}-${String(month+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
     }
-    // Render calendar days for current month and color-code by saved moods
     function renderCalendar(year, month) {
       calendarDays.innerHTML = '';
       let firstDay = new Date(year, month, 1);
@@ -39,13 +34,11 @@
       let firstWeekday = firstDay.getDay();
       animateMonthLabel(firstDay.toLocaleString('default', { month: 'long' }) + ' ' + year);
       const moodData = loadMoodData();
-      // Fill initial blank days for previous month
       for(let i=0; i < firstWeekday; i++){
         const emptyDiv = document.createElement('div');
         emptyDiv.classList.add('day');
         calendarDays.appendChild(emptyDiv);
       }
-      // Create day elements
       for(let day=1; day<=lastDay.getDate(); day++){
         const dayDiv = document.createElement('div');
         dayDiv.classList.add('day');
@@ -56,12 +49,10 @@
           dayDiv.classList.add(`mood-${mood}`);
           dayDiv.style.transition = 'background-color 0.5s ease';
         }
-        // Highlight today
         const today = new Date();
         if(year === today.getFullYear() && month === today.getMonth() && day === today.getDate()){
           dayDiv.classList.add('today');
         }
-        // Tooltip for the mood of the day
         if (mood && moods[mood]) {
           const tooltip = document.createElement('span');
           tooltip.className = 'tooltip';
@@ -81,7 +72,6 @@
       updateSummary();
       showConfirmation(mood);
     }
-    // Show a temporary confirmation animation/feedback after mood clicked
     function showConfirmation(mood) {
       const button = document.querySelector(`.emoji-btn[data-mood="${mood}"]`);
       if(!button) return;
@@ -94,7 +84,6 @@
         easing: 'ease-out',
       });
     }
-    // Returns array of last 7 days keys in YYYY-MM-DD format
     function getLast7DaysKeys() {
       const keys = [];
       let today = new Date();
@@ -105,7 +94,6 @@
       }
       return keys;
     }
-    // Update the summary bar with counts for last 7 days
     function updateSummary() {
       const moodData = loadMoodData();
       const last7days = getLast7DaysKeys();
@@ -121,9 +109,7 @@
           scoredDays++;
         }
       });
-      // Clear previous bars
       moodBar.innerHTML = '';
-      // For each mood, add a bar element if count > 0 or always show with zero count
       for(const moodKey in counts){
         const count = counts[moodKey];
         const moodDiv = document.createElement('div');
@@ -132,7 +118,6 @@
         moodDiv.innerHTML = `<div aria-label="${moods[moodKey].label} count">${moods[moodKey].emoji}</div><span class="count">${count}</span>`;
         moodBar.appendChild(moodDiv);
       }
-      // Determine suggestion based on average score
       let avgScore = (scoredDays === 0) ? 3 : totalScore/scoredDays;
       let suggestion = '';
       if(scoredDays === 0){
@@ -150,7 +135,6 @@
       }
       suggestionText.textContent = suggestion;
     }
-    // Add event listeners to emoji buttons
     emojiButtons.forEach(button => {
       button.addEventListener('click', () => {
         const mood = button.getAttribute('data-mood');
@@ -173,12 +157,10 @@
       }
       renderCalendar(currentYear, currentMonth);
     });
-    // Initial render and summary update
     renderCalendar(currentYear, currentMonth);
     updateSummary();
   })();
 window.addEventListener('DOMContentLoaded', () => {
-  // Stagger emoji animation
   document.querySelectorAll('.emoji-btn').forEach((btn, index) => {
     btn.style.animationDelay = `${0.7 + index * 0.1}s`;
   });
@@ -192,26 +174,19 @@ window.addEventListener('DOMContentLoaded', () => {
     span.style.animationDelay = `${index * 0.1}s`;
     heading.appendChild(span);
   });
-
   function animateMonthLabel(newText) {
   const label = document.getElementById('monthYearLabel');
-
-  // Reset the animation
   label.classList.remove('animate-month-change');
-  void label.offsetWidth; // Force reflow
-
-  // Set the new text and re-apply animation class
+  void label.offsetWidth; 
   label.textContent = newText;
   label.classList.add('animate-month-change');
 }
 document.getElementById('prevMonth').addEventListener('click', () => {
-  // your logic to update month...
   document.querySelector('.calendar-header').classList.add('animate-header');
   setTimeout(() => {
     document.querySelector('.calendar-header').classList.remove('animate-header');
   }, 400);
 });
-// health  section
 document.addEventListener("DOMContentLoaded", () => {
   const healthSection = document.getElementById("healthTips");
   const observer = new IntersectionObserver(
@@ -232,4 +207,3 @@ document.addEventListener("DOMContentLoaded", () => {
     observer.observe(healthSection);
   }
 });
-
