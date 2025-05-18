@@ -192,8 +192,10 @@ window.addEventListener('DOMContentLoaded', () => {
     span.style.animationDelay = `${index * 0.1}s`;
     heading.appendChild(span);
   });
+
   function animateMonthLabel(newText) {
   const label = document.getElementById('monthYearLabel');
+
   // Reset the animation
   label.classList.remove('animate-month-change');
   void label.offsetWidth; // Force reflow
@@ -209,3 +211,25 @@ document.getElementById('prevMonth').addEventListener('click', () => {
     document.querySelector('.calendar-header').classList.remove('animate-header');
   }, 400);
 });
+// health  section
+document.addEventListener("DOMContentLoaded", () => {
+  const healthSection = document.getElementById("healthTips");
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          healthSection.classList.add("visible");
+        } else {
+          healthSection.classList.remove("visible");
+        }
+      });
+    },
+    {
+      threshold: 0.4,
+    }
+  );
+  if (healthSection) {
+    observer.observe(healthSection);
+  }
+});
+
